@@ -1,18 +1,34 @@
 import React from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet, Text, Image} from 'react-native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {ItemFunction} from '../../components';
+import {ItemFunction, CircleImage} from '../../components';
 export const HomeTeacher = (props: any) => {
   return (
     <View style={styles.MainContainer}>
+      <View style={styles.rowBase}>
+        <CircleImage
+          size={wp(12)}
+          source={require('../../assets/images/avatarGiang.jpg')}
+        />
+        <View>
+          <Text style={styles.name}>Nguyễn Vũ Trường Giang</Text>
+          <Text style={styles.competence}>(Giáo viên)</Text>
+        </View>
+      </View>
+      <Image
+        source={require('../../assets/images/menu.png')}
+        style={styles.threeDot}
+      />
+
       <View style={styles.viewRow}>
         <ItemFunction
           color={['#667db6', '#0082c8', '#0082c8', '#667db6']}
           title={'Lớp chủ nhiệm'}
           source={require('../../assets/images/presentation.png')}
+          onPress={() => console.log('aloalaolao')}
         />
         <ItemFunction
           color={['#ffb347', '#ffcc33']}
@@ -24,13 +40,25 @@ export const HomeTeacher = (props: any) => {
         <ItemFunction
           color={['#cb2d3e', '#ef473a']}
           title={'Tin tức'}
-          source={require('../../assets/images/graduation.png')}
+          source={require('../../assets/images/newspaper.png')}
         />
         <ItemFunction
           onPress={() => props.navigation.navigate('InformationTeacher')}
           color={['#06beb6', '#48b1bf']}
           title={'Xem thông tin'}
-          source={require('../../assets/images/graduation.png')}
+          source={require('../../assets/images/profile-user.png')}
+        />
+      </View>
+      <View style={styles.viewRow}>
+        <ItemFunction
+          color={['#FF5733', '#FF5733']}
+          title={'Sổ liên lạc'}
+          source={require('../../assets/images/newspaper.png')}
+        />
+        <ItemFunction
+          color={['#606c88', '#3f4c6b']}
+          title={'Thông báo'}
+          source={require('../../assets/images/profile-user.png')}
         />
       </View>
     </View>
@@ -48,5 +76,28 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     marginTop: hp(4),
+  },
+  name: {
+    fontSize: wp(3.8),
+    fontFamily: 'roboto-slab-bold',
+    color: '#000',
+    marginLeft: wp(2),
+  },
+  competence: {
+    fontSize: wp(3),
+    fontFamily: 'roboto-slab-regular',
+    color: '#000',
+    textAlign: 'center',
+  },
+  rowBase: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  threeDot: {
+    position: 'absolute',
+    top: hp(3),
+    right: 5,
+    width: wp(5),
+    height: wp(5),
   },
 });

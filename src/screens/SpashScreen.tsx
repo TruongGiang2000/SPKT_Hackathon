@@ -18,7 +18,7 @@ export const SplashScreen = (props: any) => {
       <View style={styles.MainContainer}>
         <Image source={require('../assets/images/logoSS.png')} />
         <View style={styles.indicatorsView}>
-          <DotIndicator color={'#22B1F0'} />
+          <DotIndicator color={'#22B1F0'} size={wp(2)} />
         </View>
         <Text style={styles.titleSpash}>ONLINE EDUCATION</Text>
       </View>

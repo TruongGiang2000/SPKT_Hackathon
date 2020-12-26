@@ -7,31 +7,25 @@ import {
 export const Arrow = (props: any) => {
   const {title} = props;
   return (
-    <View style={styles.MainContainer}>
-      <View style={styles.Row}>
-        <Image
-          source={require('../assets/images/left-arrow.png')}
-          style={styles.Icon}
-        />
-        <Text style={styles.Title}>{title}</Text>
-      </View>
+    <View style={styles.Row}>
+      <Image
+        source={require('../assets/images/left-arrow.png')}
+        style={styles.Icon}
+      />
+      <Text style={styles.Title}>{title}</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  MainContainer: {
-    flex: 1,
-  },
   Row: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    height: hp('10'),
   },
   Icon: {
-    height: hp('5'),
-    width: wp('10'),
+    height: wp('8'),
+    width: wp('8'),
     marginRight: wp('3.5'),
   },
   Title: {

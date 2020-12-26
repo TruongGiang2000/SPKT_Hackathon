@@ -1,7 +1,5 @@
 export * from './Login';
 export * from './SpashScreen';
-export * from './HomeStudent/HomeStudent';
+export * from './HomeStudent';
 export * from './HomeTeacher';
-export * from './HomeStudent/InformationStudent'
-export * from './HomeTeacher/InformationTeacher'
 

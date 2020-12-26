@@ -13,6 +13,8 @@ export const CircleImage = (props: any) => {
             width: size || wp('20'),
             height: size || wp('20'),
             borderRadius: size / 2 || wp('20') / 2,
+            borderColor: '#000',
+            borderWidth: 1,
           },
           styleImage,
         ]}

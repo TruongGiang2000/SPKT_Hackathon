@@ -6,6 +6,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import Ripple from 'react-native-material-ripple';
 class ButtonCustom extends Component<any, any> {
   constructor(props) {
     super(props);
@@ -15,9 +16,9 @@ class ButtonCustom extends Component<any, any> {
   render() {
     const {title, style, titleStyle, onPress} = this.props;
     return (
-      <Pressable style={[styles.MainContainer, style]} onPress={onPress}>
+      <Ripple style={[styles.MainContainer, style]} onPress={onPress}>
         <Text style={[styles.title, titleStyle]}>{title}</Text>
-      </Pressable>
+      </Ripple>
     );
   }
 }

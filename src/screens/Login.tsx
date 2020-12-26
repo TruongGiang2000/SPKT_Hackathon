@@ -38,7 +38,11 @@ export const Login = (props: any) => {
           // this is used to set backgroundColor of label mask.
           // please pass the backgroundColor of your TextInput container.
         />
-        <ButtonCustom title={'Đăng nhập'} style={styles.Down2} />
+        <ButtonCustom
+          onPress={() => props.navigation.navigate('HomeStudent')}
+          title={'Đăng nhập'}
+          style={styles.Down2}
+        />
       </View>
     </ImageBackground>
   );
