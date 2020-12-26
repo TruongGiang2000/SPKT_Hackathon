@@ -6,11 +6,11 @@ import {
 } from 'react-native-responsive-screen';
 import {DotIndicator} from 'react-native-indicators';
 export const SplashScreen = (props: any) => {
-  useEffect(() => {
-    setTimeout(() => {
-      props.navigation.navigate('Login');
-    }, 3000);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     props.navigation.navigate('Login');
+  //   }, 3000);
+  // }, []);
   return (
     <ImageBackground
       source={require('../assets/images/image5.jpg')}

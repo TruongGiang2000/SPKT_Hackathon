@@ -13,6 +13,7 @@ export const HomeTeacher = (props: any) => {
           color={['#667db6', '#0082c8', '#0082c8', '#667db6']}
           title={'Lớp chủ nhiệm'}
           source={require('../../assets/images/presentation.png')}
+          onPress={() => console.log('aloalaolao')}
         />
         <ItemFunction
           color={['#ffb347', '#ffcc33']}
