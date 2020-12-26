@@ -1,4 +1,4 @@
 import {combineEpics} from 'redux-observable';
-import {systemActionInit} from './systems/epic';
-const rootEpics = combineEpics(systemActionInit);
+import {loginEpic, getProfileEpic} from './systems/epic';
+const rootEpics = combineEpics(loginEpic, getProfileEpic);
 export default rootEpics;

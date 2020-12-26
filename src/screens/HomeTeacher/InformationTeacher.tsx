@@ -6,14 +6,15 @@ import {
 } from 'react-native-responsive-screen';
 import {FieldUser, CircleImage} from '../../components';
 import Modal from 'react-native-modal';
-
-export const InformationTeacher = (props: any) => {
+import {connect} from 'react-redux';
+import moment from 'moment';
+const InformationTeacher = (props: any) => {
   const [showModal, setShowModal] = useState(false);
   const getIcon = (name: any) => {
-    const item = data.findIndex((item) => item.name == name);
-    return data[item].source;
+    const item = listSubjectMain.findIndex((item) => item.toString() == name);
+    return dataCompare[item].source;
   };
-  const data = [
+  const dataCompare = [
     {
       source: require('../../assets/images/atom.png'),
       name: 'Vật Lý',
@@ -59,6 +60,9 @@ export const InformationTeacher = (props: any) => {
       name: 'Giáo dục công dân',
     },
   ];
+  const {userInfo}: any = props;
+  const {data} = userInfo;
+  const listSubjectMain = data?.listSubject.filter((it) => it);
   return (
     <View style={styles.MainContainer}>
       <Image
@@ -70,43 +74,63 @@ export const InformationTeacher = (props: any) => {
       <Text style={styles.personal}>Cá nhân</Text>
       <View style={styles.viewAvatarImage}>
         <CircleImage
-          source={require('../../assets/images/avatar.jpg')}
+          source={{uri: data?.avatar}}
           style={styles.circleImage}
           size={wp('27')}
           resizeMode={'cover'}
         />
       </View>
-      <Text style={styles.fullName}>Hoàng Trần Vinh Quang</Text>
+      <Text style={styles.fullName}>{data?.name}</Text>
       <View style={styles.viewField}>
         <FieldUser
           style={styles.fieldUser}
           title={'Giới tính'}
-          content={'Nam'}
+          content={data?.gender}
+        />
+        <FieldUser
+          style={styles.fieldUser}
+          title={'Ngày sinh'}
+          content={moment(data?.birthday, 'yyyy-mm-dd').format('DD/MM/YYYY')}
         />
         <FieldUser
           style={styles.fieldUser}
           title={'Điện thoại'}
-          content={'0399644146'}
+          content={data?.phonenumber}
         />
         <FieldUser
           style={styles.fieldUser}
           title={'Địa chỉ'}
-          content={'Bình Dương'}
+          content={data?.address}
         />
+        {userInfo?.classes && (
+          <FieldUser
+            style={styles.fieldUser}
+            title={'Lớp chủ nhiệm'}
+            content={userInfo?.classes?.name}
+          />
+        )}
         <FieldUser
           style={styles.fieldUser}
           title={'Môn học'}
           content={'Nhấn vào để xem những môn học bạn dạy!'}
           onPress={() => setShowModal(true)}
         />
+        <FieldUser
+          style={styles.fieldUser}
+          title={'Trường'}
+          content={userInfo?.schoolname}
+        />
         <Modal
           isVisible={showModal}
           onBackdropPress={() => setShowModal(false)}>
           <View style={styles.ModalCustem}>
             <FlatList
-              data={data}
+              data={listSubjectMain}
               renderItem={({item}) => (
-                <ItemSubjects source={getIcon(item.name)} name={item.name} />
+                <ItemSubjects
+                  source={getIcon(item.toString())}
+                  name={item.toString()}
+                />
               )}
               keyExtractor={(item, index) => `${item.name}${index}`}
             />
@@ -200,3 +224,9 @@ const ItemSubjects = (props: any) => {
     </>
   );
 };
+const mapStateFromProps = (state: any) => {
+  return {
+    userInfo: state.systems.userInfo,
+  };
+};
+export default connect(mapStateFromProps, null)(InformationTeacher);

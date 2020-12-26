@@ -4,13 +4,27 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import {connect} from 'react-redux';
 import {DotIndicator} from 'react-native-indicators';
-export const SplashScreen = (props: any) => {
+const SplashScreen = (props: any) => {
+  const {token, isStudent} = props;
   useEffect(() => {
+    console.log('token', token, isStudent);
     setTimeout(() => {
-      props.navigation.navigate('Login');
-    }, 3000);
-  }, []);
+      // if (token && isStudent) {
+      //   props.navigation.navigate('HomeStudent');
+      // } else if (token && !isStudent) {
+      //   props.navigation.navigate('HomeTeacher');
+      // } else {
+      //   props.navigation.navigate('Login');
+      // }
+      // }
+
+      token && isStudent && props.navigation.navigate('HomeStudent');
+      !token && props.navigation.navigate('Login');
+    }, 5000);
+  }, [token, isStudent]);
+
   return (
     <ImageBackground
       source={require('../assets/images/image5.jpg')}
@@ -46,3 +60,10 @@ const styles = StyleSheet.create({
     bottom: hp(1),
   },
 });
+const mapStateFromProps = (state: any) => {
+  return {
+    token: state.systems.token,
+    isStudent: state.systems.isStudent,
+  };
+};
+export default connect(mapStateFromProps, null)(SplashScreen);

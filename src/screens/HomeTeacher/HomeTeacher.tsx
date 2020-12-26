@@ -4,17 +4,17 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import {connect} from 'react-redux';
 import {ItemFunction, CircleImage} from '../../components';
-export const HomeTeacher = (props: any) => {
+const HomeTeacher = (props: any) => {
+  const {userInfo} = props;
+  const {data} = userInfo;
   return (
     <View style={styles.MainContainer}>
       <View style={styles.rowBase}>
-        <CircleImage
-          size={wp(12)}
-          source={require('../../assets/images/avatarGiang.jpg')}
-        />
+        <CircleImage size={wp(12)} source={{uri: data?.avatar}} />
         <View>
-          <Text style={styles.name}>Nguyễn Vũ Trường Giang</Text>
+          <Text style={styles.name}>{data?.name}</Text>
           <Text style={styles.competence}>(Giáo viên)</Text>
         </View>
       </View>
@@ -101,3 +101,9 @@ const styles = StyleSheet.create({
     height: wp(5),
   },
 });
+const mapStateFromProps = (state: any) => {
+  return {
+    userInfo: state.systems.userInfo,
+  };
+};
+export default connect(mapStateFromProps, null)(HomeTeacher);

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, StyleSheet, Text, ImageBackground} from 'react-native';
 import {
   widthPercentageToDP as wp,
@@ -6,7 +6,32 @@ import {
 } from 'react-native-responsive-screen';
 import {Hoshi} from 'react-native-textinput-effects';
 import ButtonCustom from '../components/ButtonCustom';
-export const Login = (props: any) => {
+import {connect} from 'react-redux';
+import {system} from '../redux';
+import {actionMain} from '../utils/actionsMain';
+const Login = (props: any) => {
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [password, setPassword] = useState('');
+  const {token, messageLogin, isStudent} = props;
+  const onChangePhone = (value: any) => {
+    setPhoneNumber(value);
+  };
+  const onChangePass = (value: any) => {
+    setPassword(value);
+  };
+  const login = () => {
+    const dataLogin = {
+      phonenumber: phoneNumber,
+      password: password,
+    };
+    props.login(dataLogin);
+    actionMain.loading(true);
+  };
+  useEffect(() => {
+    !token && props.navigation.navigate('Login');
+    token && isStudent && props.navigation.navigate('HomeStudent');
+    token && !isStudent && props.navigation.navigate('HomeTeacher');
+  }, [token, isStudent]);
   return (
     <ImageBackground
       source={require('../assets/images/image5.jpg')}
@@ -21,6 +46,8 @@ export const Login = (props: any) => {
           borderColor={'#22B1F0'}
           // active border height
           borderHeight={1}
+          value={phoneNumber}
+          onChangeText={onChangePhone}
           inputPadding={16}
           // this is used to set backgroundColor of label mask.
           // please pass the backgroundColor of your TextInput container.
@@ -30,18 +57,20 @@ export const Login = (props: any) => {
           secureTextEntry={true}
           style={styles.TextInput}
           label={'Mật khẩu'}
+          onChangeText={onChangePass}
           // this is used as active border color
           borderColor={'#22B1F0'}
           // active border height
           borderHeight={1}
+          value={password}
           inputPadding={16}
           // this is used to set backgroundColor of label mask.
           // please pass the backgroundColor of your TextInput container.
         />
         <ButtonCustom
-          onPress={() => props.navigation.navigate('HomeStudent')}
           title={'Đăng nhập'}
           style={styles.Down2}
+          onPress={login}
         />
       </View>
     </ImageBackground>
@@ -75,3 +104,11 @@ const styles = StyleSheet.create({
     fontFamily: 'roboto-slab-regular',
   },
 });
+const mapStateFromProps = (state: any) => {
+  return {
+    token: state.systems.token,
+    messageLogin: state.systems.messageLogin,
+    isStudent: state.systems.isStudent,
+  };
+};
+export default connect(mapStateFromProps, {...system})(Login);

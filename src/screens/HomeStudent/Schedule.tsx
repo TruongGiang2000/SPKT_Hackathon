@@ -118,11 +118,23 @@ export const Schedule = (props: any) => {
     );
   };
   const renderItemSubject = ({item, index}) => {
+    const isAfternoon = index == 4;
     return (
-      <SquareChildItem
-        name={item.toString()}
-        style={index == 8 ? {borderBottomWidth: 1} : undefined}
-      />
+      <>
+        <SquareChildItem
+          name={item.toString()}
+          style={index == 8 ? {borderBottomWidth: 1} : undefined}
+        />
+        {isAfternoon && (
+          <Text
+            style={[
+              styles.squareChildItem,
+              {fontFamily: 'roboto-slab-bold', color: '#22B1F0'},
+            ]}>
+            Chiều
+          </Text>
+        )}
+      </>
     );
   };
 
