@@ -11,12 +11,12 @@ export const HomeStudent = (props: any) => {
     <View style={styles.MainContainer}>
       <View style={styles.Row}>
         <ItemFunction
-          source={require('schedule1.png')}
+          source={require('../../assets/images/schedule1.png')}
           title={'Xem Lịch'}
           color={['#FDC830', '#F37335']}
         />
         <ItemFunction
-          source={require('schedule1.png')}
+          source={require('../../assets/images/schedule1.png')}
           title={'Xem Lịch'}
           color={['#FDC830', '#F37335']}
         />
