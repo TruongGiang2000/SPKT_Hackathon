@@ -6,19 +6,19 @@ import {
 } from 'react-native-responsive-screen';
 import LinearGradient from 'react-native-linear-gradient';
 import shadow from '../utils/shadow';
-
+import Ripple from 'react-native-material-ripple';
 export const ItemFunction = (props: any) => {
-  const {color, source, title} = props;
+  const {color, source, title, onPress} = props;
 
   return (
-    <Pressable style={styles.MainContainer}>
+    <Ripple style={styles.MainContainer} onPress={onPress}>
       <LinearGradient colors={color} style={styles.abc}>
         <Image source={source} style={styles.Icon} />
         <Text style={[styles.title]} numberOfLines={2}>
           {title}
         </Text>
       </LinearGradient>
-    </Pressable>
+    </Ripple>
   );
 };
 

@@ -17,19 +17,19 @@ export const HomeTeacher = (props: any) => {
         <ItemFunction
           color={['#ffb347', '#ffcc33']}
           title={'Danh sách lớp dạy'}
-          source={require('../../assets/images/presentation.png')}
+          source={require('../../assets/images/graduation.png')}
         />
       </View>
       <View style={styles.viewRow}>
         <ItemFunction
           color={['#cb2d3e', '#ef473a']}
-          title={'Lớp chủ nhiệm'}
-          source={require('../../assets/images/presentation.png')}
+          title={'Tin tức'}
+          source={require('../../assets/images/graduation.png')}
         />
         <ItemFunction
           color={['#06beb6', '#48b1bf']}
-          title={'Lớp chủ nhiệm'}
-          source={require('../../assets/images/presentation.png')}
+          title={'Xem thông tin'}
+          source={require('../../assets/images/graduation.png')}
         />
       </View>
     </View>
