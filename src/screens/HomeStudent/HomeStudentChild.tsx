@@ -6,18 +6,18 @@ import {
 } from 'react-native-responsive-screen';
 import {ItemFunction, CircleImage} from '../../components';
 import * as Animate from 'react-native-animatable';
-import { MenuProvider } from 'react-native-popup-menu';
-export const HomeStudentChild = (props: any) => {
+import {MenuProvider} from 'react-native-popup-menu';
+import {connect} from 'react-redux';
+const HomeStudentChild = (props: any) => {
+  const {userInfo} = props;
+  const {data} = userInfo;
   return (
     <View style={styles.MainContainer}>
       <Animate.View animation={'fadeInUp'}>
         <View style={styles.rowBase}>
-          <CircleImage
-            size={wp(12)}
-            source={require('../../assets/images/avatarGiang.jpg')}
-          />
+          <CircleImage size={wp(12)} source={{uri: data?.avatar}} />
           <View>
-            <Text style={styles.name}>Nguyễn Vũ Trường Giang</Text>
+            <Text style={styles.name}>{data?.name}</Text>
             <Text style={styles.competence}>(Học sinh)</Text>
           </View>
         </View>
@@ -97,6 +97,7 @@ const styles = StyleSheet.create({
     fontFamily: 'roboto-slab-regular',
     color: '#000',
     textAlign: 'center',
+    marginLeft: wp(2),
   },
   threeDot: {
     position: 'absolute',
@@ -106,3 +107,9 @@ const styles = StyleSheet.create({
     height: wp(5),
   },
 });
+const mapStateFromProps = (state) => {
+  return {
+    userInfo: state.systems.userInfo,
+  };
+};
+export default connect(mapStateFromProps, null)(HomeStudentChild);

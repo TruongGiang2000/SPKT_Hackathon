@@ -1,12 +1,14 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
-import {HomeStudentChild, Schedule} from '../screens';
+import HomeStudentChild from '../screens/HomeStudent/HomeStudentChild';
 import Login from '../screens/Login';
 import SplashScreen from '../screens/SpashScreen';
 import InformationTeacher from '../screens/HomeTeacher/InformationTeacher';
 import InformationStudent from '../screens/HomeStudent/InformationStudent';
 import HomeTeacher from '../screens/HomeTeacher/HomeTeacher';
+import Classes from '../screens/HomeTeacher/Classes';
+import Schedule from '../screens/HomeStudent/Schedule';
 import store from '../redux/store';
 const Stack = createStackNavigator();
 const mainRoute = () => {
@@ -28,6 +30,7 @@ const mainRoute = () => {
           name={'InformationStudent'}
           component={InformationStudent}
         />
+        <Stack.Screen name={'Classes'} component={Classes} />
       </Stack.Navigator>
     </NavigationContainer>
   );

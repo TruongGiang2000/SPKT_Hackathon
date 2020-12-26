@@ -120,22 +120,24 @@ const InformationTeacher = (props: any) => {
           title={'Trường'}
           content={userInfo?.schoolname}
         />
-        <Modal
-          isVisible={showModal}
-          onBackdropPress={() => setShowModal(false)}>
-          <View style={styles.ModalCustem}>
-            <FlatList
-              data={listSubjectMain}
-              renderItem={({item}) => (
-                <ItemSubjects
-                  source={getIcon(item.toString())}
-                  name={item.toString()}
-                />
-              )}
-              keyExtractor={(item, index) => `${item.name}${index}`}
-            />
-          </View>
-        </Modal>
+        {showModal && (
+          <Modal
+            isVisible={showModal}
+            onBackdropPress={() => setShowModal(false)}>
+            <View style={styles.ModalCustem}>
+              <FlatList
+                data={listSubjectMain}
+                renderItem={({item}) => (
+                  <ItemSubjects
+                    source={getIcon(item.toString())}
+                    name={item.toString()}
+                  />
+                )}
+                keyExtractor={(item, index) => `${item.name}${index}`}
+              />
+            </View>
+          </Modal>
+        )}
       </View>
     </View>
   );

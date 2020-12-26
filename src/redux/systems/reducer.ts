@@ -5,6 +5,8 @@ const initState = {
   messageLogin: '',
   userInfo: {},
   isStudent: undefined,
+  schedule: {},
+  classes: {},
 };
 export const systemsReducer: any = (state = initState, actions: any) => {
   const {payload} = actions;
@@ -40,6 +42,16 @@ export const systemsReducer: any = (state = initState, actions: any) => {
       return {
         ...state,
         userInfo: {},
+      };
+    case types.GET_SCHEDULE_SUCCESS:
+      return {
+        ...state,
+        schedule: payload.data,
+      };
+    case types.GET_CLASS_SUCCESS:
+      return {
+        ...state,
+        classes: payload.data,
       };
     default:
       return state;

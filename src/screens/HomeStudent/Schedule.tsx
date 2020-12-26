@@ -1,12 +1,15 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, Text, FlatList} from 'react-native';
+import {View, StyleSheet, Text, FlatList, ScrollView} from 'react-native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import {Arrow} from '../../components';
 import shadow from '../../utils/shadow';
-export const Schedule = (props: any) => {
+import {connect} from 'react-redux';
+import {system} from '../../redux';
+const Schedule = (props: any) => {
+  const {userInfo, schedule} = props;
   const dataDummy = [
     {
       date: '',
@@ -99,6 +102,9 @@ export const Schedule = (props: any) => {
       ],
     },
   ];
+  React.useEffect(() => {
+    props.getSchedule({id: userInfo?.classes?.id});
+  }, []);
   const renderItem = ({item, index}) => {
     const isFirst = index == 0;
     return (
@@ -111,7 +117,7 @@ export const Schedule = (props: any) => {
   const renderChildItem = ({item, index}) => {
     return (
       <FlatList
-        data={item.subjects}
+        data={item.subject}
         renderItem={renderItemSubject}
         keyExtractor={(item, index) => `${index}`}
       />
@@ -123,7 +129,7 @@ export const Schedule = (props: any) => {
       <>
         <SquareChildItem
           name={item.toString()}
-          style={index == 8 ? {borderBottomWidth: 1} : undefined}
+          style={index == 9 ? {borderBottomWidth: 1} : undefined}
         />
         {isAfternoon && (
           <Text
@@ -144,22 +150,24 @@ export const Schedule = (props: any) => {
         title={'Thời khoá biểu'}
         onPress={() => props.navigation.goBack()}
       />
-      <View style={styles.viewFlatList}>
-        <FlatList
-          keyExtractor={(item, index) => `${index}`}
-          data={dataDummy}
-          renderItem={renderItem}
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-        />
-        <FlatList
-          data={dataDummy}
-          renderItem={renderChildItem}
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-          keyExtractor={(item, index) => `${index}`}
-        />
-      </View>
+      <ScrollView>
+        <View style={styles.viewFlatList}>
+          <FlatList
+            keyExtractor={(item, index) => `${index}`}
+            data={schedule}
+            renderItem={renderItem}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+          />
+          <FlatList
+            data={schedule}
+            renderItem={renderChildItem}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            keyExtractor={(item, index) => `${index}`}
+          />
+        </View>
+      </ScrollView>
     </View>
   );
 };
@@ -171,32 +179,35 @@ const styles = StyleSheet.create({
     paddingVertical: hp(2),
   },
   squareItem: {
-    fontSize: wp(3.8),
+    fontSize: wp(3),
     backgroundColor: '#22B1F0',
     fontFamily: 'roboto-slab-bold',
     color: '#fff',
     width: wp(15),
     textAlign: 'center',
-    paddingVertical: wp(2),
+    padding: wp(2),
     borderTopWidth: 1,
     borderColor: '#000',
     borderRightWidth: 1,
+    textAlignVertical: 'center',
   },
   viewFlatList: {
     alignItems: 'center',
     marginTop: hp('2'),
   },
   squareChildItem: {
-    fontSize: wp(3.8),
+    fontSize: wp(3),
     fontFamily: 'roboto-slab-regular',
     color: '#000',
     width: wp(15),
-    paddingVertical: wp(2),
+    padding: wp(1),
     textAlign: 'center',
     borderTopWidth: 1,
     borderColor: '#000',
     borderRightWidth: 1,
     borderLeftWidth: 1,
+    height: hp(10),
+    textAlignVertical: 'center',
   },
 });
 const SquareItem = (props: any) => {
@@ -207,3 +218,10 @@ const SquareChildItem = (props: any) => {
   const {name, style} = props;
   return <Text style={[styles.squareChildItem, style]}>{name}</Text>;
 };
+const mapStateFromProps = (state: any) => {
+  return {
+    userInfo: state.systems.userInfo,
+    schedule: state.systems.schedule,
+  };
+};
+export default connect(mapStateFromProps, {...system})(Schedule);
