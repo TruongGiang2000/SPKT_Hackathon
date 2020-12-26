@@ -27,6 +27,7 @@ export const HomeTeacher = (props: any) => {
           source={require('../../assets/images/graduation.png')}
         />
         <ItemFunction
+          onPress={() => props.navigation.navigate('InformationTeacher')}
           color={['#06beb6', '#48b1bf']}
           title={'Xem thông tin'}
           source={require('../../assets/images/graduation.png')}
@@ -49,4 +50,3 @@ const styles = StyleSheet.create({
     marginTop: hp(4),
   },
 });
-

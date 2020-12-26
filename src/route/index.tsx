@@ -6,7 +6,8 @@ import {
   SplashScreen,
   HomeStudent,
   HomeTeacher,
-  Information,
+  InformationStudent,
+  InformationTeacher,
 } from '../screens';
 import {from} from 'rxjs';
 const Stack = createStackNavigator();
@@ -14,8 +15,17 @@ const mainRoute = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator headerMode={'none'}>
-        <Stack.Screen name={'Information'} component={Information} />
+        <Stack.Screen name={'HomeTeacher'} component={HomeTeacher} />
         <Stack.Screen name={'HomeStudent'} component={HomeStudent} />
+        <Stack.Screen
+          name={'InformationTeacher'}
+          component={InformationTeacher}
+        />
+
+        <Stack.Screen
+          name={'InformationStudent'}
+          component={InformationStudent}
+        />
         <Stack.Screen name={'SplashScreen'} component={SplashScreen} />
         <Stack.Screen name={'Login'} component={Login} />
       </Stack.Navigator>
