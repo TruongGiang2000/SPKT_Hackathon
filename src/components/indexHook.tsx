@@ -4,7 +4,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-export const SplashScreen = (props: any) => {
+export const index = (props: any) => {
   return (
     <View style={styles.MainContainer}>
       <Text>index</Text>
