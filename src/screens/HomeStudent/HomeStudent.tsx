@@ -12,13 +12,25 @@ export const HomeStudent = (props: any) => {
       <View style={styles.Row}>
         <ItemFunction
           source={require('../../assets/images/schedule1.png')}
-          title={'Xem Lịch'}
-          color={['#FDC830', '#F37335']}
+          title={'Thời Khóa Biểu'}
+          color={['#FFB760', '#F37335']}
         />
         <ItemFunction
-          source={require('../../assets/images/schedule1.png')}
-          title={'Xem Lịch'}
-          color={['#FDC830', '#F37335']}
+          source={require('../../assets/images/newspaper.png')}
+          title={'Tin tức'}
+          color={['#FFE800', '#FFE800']}
+        />
+      </View>
+      <View style={styles.Row}>
+        <ItemFunction
+          source={require('../../assets/images/open-seach.png')}
+          title={'Điểm môn học'}
+          color={['#EF3B36', '#E92A17']}
+        />
+        <ItemFunction
+          source={require('../../assets/images/profile-user.png')}
+          title={'Xem thông tin'}
+          color={['#22B1F0', '#22B1F0']}
         />
       </View>
     </View>
@@ -32,6 +44,7 @@ const styles = StyleSheet.create({
     alignContent: 'center',
   },
   Row: {
+    marginBottom: hp('10'),
     flexDirection: 'row',
   },
 });

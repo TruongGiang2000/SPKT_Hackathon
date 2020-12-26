@@ -9,9 +9,9 @@ const mainRoute = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator headerMode={'none'}>
+        <Stack.Screen name={'HomeStudent'} component={HomeStudent} />
         <Stack.Screen name={'SplashScreen'} component={SplashScreen} />
         <Stack.Screen name={'Login'} component={Login} />
-        <Stack.Screen name={'HomeStudent'} component={HomeStudent} />
       </Stack.Navigator>
     </NavigationContainer>
   );
