@@ -6,7 +6,7 @@ import {
 } from 'react-native-responsive-screen';
 import {FieldUser, CircleImage} from '../../components';
 
-export const Information = (props: any) => {
+export const InformationStudent = (props: any) => {
   return (
     <View style={styles.MainContainer}>
       <Image
@@ -89,4 +89,3 @@ const styles = StyleSheet.create({
     marginTop: hp('3.5'),
   },
 });
-

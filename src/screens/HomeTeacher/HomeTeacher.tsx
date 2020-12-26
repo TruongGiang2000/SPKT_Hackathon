@@ -43,6 +43,7 @@ export const HomeTeacher = (props: any) => {
           source={require('../../assets/images/newspaper.png')}
         />
         <ItemFunction
+          onPress={() => props.navigation.navigate('InformationTeacher')}
           color={['#06beb6', '#48b1bf']}
           title={'Xem thông tin'}
           source={require('../../assets/images/profile-user.png')}
@@ -100,4 +101,3 @@ const styles = StyleSheet.create({
     height: wp(5),
   },
 });
-

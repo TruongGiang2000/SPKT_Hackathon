@@ -7,6 +7,8 @@ import {
   HomeStudentChild,
   HomeTeacher,
   Schedule,
+  InformationStudent,
+  InformationTeacher,
 } from '../screens';
 const Stack = createStackNavigator();
 const mainRoute = () => {
@@ -15,9 +17,18 @@ const mainRoute = () => {
       <Stack.Navigator headerMode={'none'}>
         <Stack.Screen name={'SplashScreen'} component={SplashScreen} />
         <Stack.Screen name={'Login'} component={Login} />
-        <Stack.Screen name={'HomeStudent'} component={HomeStudentChild} />
         <Stack.Screen name={'HomeTeacher'} component={HomeTeacher} />
+        <Stack.Screen name={'HomeStudent'} component={HomeStudentChild} />
+
         <Stack.Screen name={'Schedule'} component={Schedule} />
+        <Stack.Screen
+          name={'InformationTeacher'}
+          component={InformationTeacher}
+        />
+        <Stack.Screen
+          name={'InformationStudent'}
+          component={InformationStudent}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

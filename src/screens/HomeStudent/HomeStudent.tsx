@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet, Text , ScrollView} from 'react-native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -9,14 +9,6 @@ import {ItemFunction, CircleImage, Arrow} from '../../components';
 export const HomeStudent = (props: any) => {
   return (
     <View style={styles.MainContainer}>
-      <Arrow title={'Thời Khóa Biểu'} />
-
-      <View>
-        <CircleImage
-          size={20}
-          source={require('../../assets/images/avatar.jpg')}
-        />
-      </View>
       <View style={styles.Row}>
         <ItemFunction
           source={require('../../assets/images/schedule1.png')}
@@ -36,6 +28,7 @@ export const HomeStudent = (props: any) => {
           color={['#EF3B36', '#E92A17']}
         />
         <ItemFunction
+          onPress={() => props.navigation.navigate('InformationStudent')}
           source={require('../../assets/images/profile-user.png')}
           title={'Xem thông tin'}
           color={['#22B1F0', '#22B1F0']}
