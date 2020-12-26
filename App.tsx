@@ -8,16 +8,19 @@
  * @format
  */
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet, View, StatusBar} from 'react-native';
 import RouteMain from './src/route';
 import {connect} from 'react-redux';
-import {} from './src/utils/actionsMain';
+import {actionInit} from './src/utils/actionsMain';
 import {system} from './src/redux';
 const App = (props: any) => {
+  useEffect(() => {
+    actionInit(props);
+  }, []);
   return (
     <View style={{flex: 1}}>
-      <StatusBar barStyle="dark-content" />
+      <StatusBar barStyle="light-content" />
       <RouteMain />
     </View>
   );

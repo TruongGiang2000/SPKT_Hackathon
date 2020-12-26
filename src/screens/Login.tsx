@@ -12,8 +12,7 @@ export const Login = (props: any) => {
       source={require('../assets/images/image5.jpg')}
       style={{height: '100%', width: '100%'}}>
       <View style={styles.MainContainer}>
-        <Text style={styles.Title}>EDUCATION</Text>
-
+        <Text style={styles.Title}>Login</Text>
         <Hoshi
           labelStyle={styles.LabelStyle}
           style={styles.TextInput}
@@ -57,7 +56,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     color: '#22B1F0',
     marginTop: hp('10'),
-    marginBottom: hp('8'),
   },
 
   Down2: {
