@@ -4,10 +4,23 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-export const index = (props: any) => {
+import {ItemFunction} from '../../components';
+
+export const HomeStudent = (props: any) => {
   return (
     <View style={styles.MainContainer}>
-      <Text>index</Text>
+      <View style={styles.Row}>
+        <ItemFunction
+          source={require('schedule1.png')}
+          title={'Xem Lịch'}
+          color={['#FDC830', '#F37335']}
+        />
+        <ItemFunction
+          source={require('schedule1.png')}
+          title={'Xem Lịch'}
+          color={['#FDC830', '#F37335']}
+        />
+      </View>
     </View>
   );
 };
@@ -15,5 +28,10 @@ export const index = (props: any) => {
 const styles = StyleSheet.create({
   MainContainer: {
     flex: 1,
+    justifyContent: 'center',
+    alignContent: 'center',
+  },
+  Row: {
+    flexDirection: 'row',
   },
 });

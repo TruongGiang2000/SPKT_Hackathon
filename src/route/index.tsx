@@ -1,8 +1,8 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
-import {Login, SplashScreen} from '../screens';
-import {ItemFunction} from '../components';
+import {Login, SplashScreen, HomeStudent} from '../screens';
+
 import {from} from 'rxjs';
 const Stack = createStackNavigator();
 const mainRoute = () => {
@@ -10,8 +10,8 @@ const mainRoute = () => {
     <NavigationContainer>
       <Stack.Navigator headerMode={'none'}>
         <Stack.Screen name={'SplashScreen'} component={SplashScreen} />
-        <Stack.Screen name={'ItemFuction'} component={ItemFunction} />
         <Stack.Screen name={'Login'} component={Login} />
+        <Stack.Screen name={'HomeStudent'} component={HomeStudent} />
       </Stack.Navigator>
     </NavigationContainer>
   );
