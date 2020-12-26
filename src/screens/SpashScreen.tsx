@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet, Text, Image} from 'react-native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -7,7 +7,7 @@ import {
 export const SplashScreen = (props: any) => {
   return (
     <View style={styles.MainContainer}>
-      <Text>index</Text>
+      <Image source={require('../assets/images/logoSS.png')} />
     </View>
   );
 };
@@ -15,5 +15,8 @@ export const SplashScreen = (props: any) => {
 const styles = StyleSheet.create({
   MainContainer: {
     flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
+  logo: {},
 });

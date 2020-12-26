@@ -11,7 +11,10 @@
 import React from 'react';
 import {StyleSheet, View, StatusBar} from 'react-native';
 import RouteMain from './src/route';
-export const App = (props: any) => {
+import {connect} from 'react-redux';
+import {} from './src/utils/actionsMain';
+import {system} from './src/redux';
+const App = (props: any) => {
   return (
     <View style={{flex: 1}}>
       <StatusBar barStyle="dark-content" />
@@ -19,5 +22,8 @@ export const App = (props: any) => {
     </View>
   );
 };
-
+const mapStateFromProps = (state: any) => {
+  return {};
+};
 const styles = StyleSheet.create({});
+export default connect(mapStateFromProps, {...system})(App);

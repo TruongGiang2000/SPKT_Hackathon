@@ -1,2 +1,5 @@
 import {combineReducers} from 'redux';
-import {} from './systems/reducer';
+import {systemsReducer} from './systems/reducer';
+export default combineReducers({
+  systems: systemsReducer,
+});
