@@ -6,8 +6,12 @@ import {
 } from 'react-native-responsive-screen';
 import {ItemFunction, CircleImage} from '../../components';
 import * as Animate from 'react-native-animatable';
-import { MenuProvider } from 'react-native-popup-menu';
+import OptionsMenu from 'react-native-option-menu';
 export const HomeStudentChild = (props: any) => {
+  const logOut = () => {
+    console.log('Abc');
+  };
+  const cancel = () => {};
   return (
     <View style={styles.MainContainer}>
       <Animate.View animation={'fadeInUp'}>
@@ -20,11 +24,18 @@ export const HomeStudentChild = (props: any) => {
             <Text style={styles.name}>Nguyễn Vũ Trường Giang</Text>
             <Text style={styles.competence}>(Học sinh)</Text>
           </View>
+          <View style={styles.abc}>
+            <OptionsMenu
+              button={require('../../assets/images/menu.png')}
+              destructiveIndex={1}
+              buttonStyle={styles.threeDot}
+              options={['Đăng xuất', 'Hủy']}
+              actions={[logOut, cancel]}
+              style={{width: wp('6'), height: wp('10'), backgroundColor: 'red'}}
+            />
+          </View>
         </View>
-        <Image
-          source={require('../../assets/images/menu.png')}
-          style={styles.threeDot}
-        />
+
         <ScrollView style={{marginBottom: hp('4')}}>
           <View style={styles.Row}>
             <ItemFunction
@@ -99,10 +110,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   threeDot: {
+    width: wp('5'),
+    height: wp('5'),
+  },
+  abc: {
     position: 'absolute',
-    top: hp(3),
+    top: hp('3'),
     right: 5,
-    width: wp(5),
-    height: wp(5),
   },
 });
