@@ -4,12 +4,15 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {ItemFunction, CircleImage} from '../../components';
+import {ItemFunction, CircleImage, ItemStudent} from '../../components';
 import * as Animate from 'react-native-animatable';
 import OptionsMenu from 'react-native-option-menu';
+import {system} from '../../redux';
+import {connect} from 'react-redux';
+
 export const HomeStudentChild = (props: any) => {
   const logOut = () => {
-    console.log('Abc');
+    props.LogOut();
   };
   const cancel = () => {};
   return (
@@ -35,6 +38,7 @@ export const HomeStudentChild = (props: any) => {
             />
           </View>
         </View>
+        <ItemStudent />
 
         <ScrollView style={{marginBottom: hp('4')}}>
           <View style={styles.Row}>
@@ -119,3 +123,9 @@ const styles = StyleSheet.create({
     right: 5,
   },
 });
+const mapStateFromProps = (state: any) => {
+  return {
+    userInfo: state.systems.userInfo,
+  };
+};
+export default connect(mapStateFromProps, system)(HomeStudentChild);
