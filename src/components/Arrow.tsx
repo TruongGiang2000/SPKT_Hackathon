@@ -4,14 +4,17 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import Ripple from 'react-native-material-ripple';
 export const Arrow = (props: any) => {
-  const {title} = props;
+  const {title, onPress} = props;
   return (
     <View style={styles.Row}>
-      <Image
-        source={require('../assets/images/left-arrow.png')}
-        style={styles.Icon}
-      />
+      <Ripple onPress={onPress}>
+        <Image
+          source={require('../assets/images/left-arrow.png')}
+          style={styles.Icon}
+        />
+      </Ripple>
       <Text style={styles.Title}>{title}</Text>
     </View>
   );

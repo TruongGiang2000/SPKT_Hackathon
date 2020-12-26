@@ -10,7 +10,7 @@ import ModalCustom from 'react-native-modal';
 const ActivityIndicator = (props: any) => {
   return (
     <ModalCustom
-      isVisible={props.loading}
+      isVisible={true}
       style={styles.MainContainer}
       backdropOpacity={0.7}>
       <DotIndicator color={'#22B1F0'} />

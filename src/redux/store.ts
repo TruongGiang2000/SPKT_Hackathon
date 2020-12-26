@@ -5,11 +5,11 @@ import {createEpicMiddleware} from 'redux-observable';
 import {createWhitelistFilter} from 'redux-persist-transform-filter';
 import rootReducers from './reducer';
 import rootEpic from './rootEpics';
-const loading = createWhitelistFilter('systems', ['loading']);
+const token = createWhitelistFilter('systems', ['token']);
 const epicMiddleware = createEpicMiddleware();
 const persistConfig: any = {
   key: 'root',
-  transforms: [loading],
+  transforms: [token],
   storage: AsyncStorage,
   timeout: 0,
 };

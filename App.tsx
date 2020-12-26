@@ -17,9 +17,15 @@ import {system} from './src/redux';
 import ActivityIndicator from './src/components/ActivityIndicator';
 const App = (props: any) => {
   const {loading} = props;
+  const {token} = props;
   useEffect(() => {
     actionInit(props);
   }, []);
+  useEffect(() => {
+    if (token) {
+      props.getProfile({id: token});
+    }
+  }, [token]);
   return (
     <View style={{flex: 1}}>
       {loading && <ActivityIndicator />}
@@ -31,6 +37,7 @@ const App = (props: any) => {
 const mapStateFromProps = (state: any) => {
   return {
     loading: state.systems.loading,
+    token: state.systems.token,
   };
 };
 const styles = StyleSheet.create({});

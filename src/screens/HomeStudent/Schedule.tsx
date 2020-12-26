@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, StyleSheet, Text, FlatList} from 'react-native';
 import {
   widthPercentageToDP as wp,
@@ -11,32 +11,92 @@ export const Schedule = (props: any) => {
     {
       date: '',
       id: '',
-      subjects: ['Toán', 'Lý', 'Hoá', 'Sinh', 'Toán', 'Sinh', 'Lý'],
+      subjects: [
+        'Toán',
+        'Lý',
+        'Hoá',
+        'Sinh',
+        'Toán',
+        'Sinh',
+        'Lý',
+        'Công nghệ',
+        'Địa lý',
+      ],
     },
     {
       date: '',
       id: '',
-      subjects: ['Toán', 'Lý', 'Hoá', 'Sinh', 'Toán', 'Sinh', 'Lý'],
+      subjects: [
+        'Toán',
+        'Lý',
+        'Hoá',
+        'Sinh',
+        'Toán',
+        'Sinh',
+        'Lý',
+        'Công nghệ',
+        'Địa lý',
+      ],
     },
     {
       date: '',
       id: '',
-      subjects: ['Toán', 'Lý', 'Hoá', 'Sinh', 'Toán', 'Sinh', 'Lý'],
+      subjects: [
+        'Toán',
+        'Lý',
+        'Hoá',
+        'Sinh',
+        'Toán',
+        'Sinh',
+        'Lý',
+        'Công nghệ',
+        'Địa lý',
+      ],
     },
     {
       date: '',
       id: '',
-      subjects: ['Toán', 'Lý', 'Hoá', 'Sinh', 'Toán', 'Sinh', 'Lý'],
+      subjects: [
+        'Toán',
+        'Lý',
+        'Hoá',
+        'Sinh',
+        'Toán',
+        'Sinh',
+        'Lý',
+        'Công nghệ',
+        'Địa lý',
+      ],
     },
     {
       date: '',
       id: '',
-      subjects: ['Toán', 'Lý', 'Hoá', 'Sinh', 'Toán', 'Sinh', 'Lý'],
+      subjects: [
+        'Toán',
+        'Lý',
+        'Hoá',
+        'Sinh',
+        'Toán',
+        'Sinh',
+        'Lý',
+        'Công nghệ',
+        'Địa lý',
+      ],
     },
     {
       date: '',
       id: '',
-      subjects: ['Toán', 'Lý', 'Hoá', 'Sinh', 'Toán', 'Sinh', 'Lý'],
+      subjects: [
+        'Toán',
+        'Lý',
+        'Hoá',
+        'Sinh',
+        'Toán',
+        'Sinh',
+        'Lý',
+        'Công nghệ',
+        'Địa lý',
+      ],
     },
   ];
   const renderItem = ({item, index}) => {
@@ -54,22 +114,36 @@ export const Schedule = (props: any) => {
         data={item.subjects}
         renderItem={renderItemSubject}
         keyExtractor={(item, index) => `${index}`}
-        extraData={index}
       />
     );
   };
   const renderItemSubject = ({item, index}) => {
+    const isAfternoon = index == 4;
     return (
-      <SquareChildItem
-        name={item.toString()}
-        // style={isFirst ? {borderLeftWidth: 1} : undefined}
-      />
+      <>
+        <SquareChildItem
+          name={item.toString()}
+          style={index == 8 ? {borderBottomWidth: 1} : undefined}
+        />
+        {isAfternoon && (
+          <Text
+            style={[
+              styles.squareChildItem,
+              {fontFamily: 'roboto-slab-bold', color: '#22B1F0'},
+            ]}>
+            Chiều
+          </Text>
+        )}
+      </>
     );
   };
 
   return (
     <View style={styles.MainContainer}>
-      <Arrow title={'Thời khoá biểu'} />
+      <Arrow
+        title={'Thời khoá biểu'}
+        onPress={() => props.navigation.goBack()}
+      />
       <View style={styles.viewFlatList}>
         <FlatList
           keyExtractor={(item, index) => `${index}`}
@@ -122,6 +196,7 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderColor: '#000',
     borderRightWidth: 1,
+    borderLeftWidth: 1,
   },
 });
 const SquareItem = (props: any) => {

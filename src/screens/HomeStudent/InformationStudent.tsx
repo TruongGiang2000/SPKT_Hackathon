@@ -5,8 +5,11 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import {FieldUser, CircleImage} from '../../components';
-
-export const InformationStudent = (props: any) => {
+import {connect} from 'react-redux';
+import moment from 'moment';
+const InformationStudent = (props: any) => {
+  const {userInfo} = props;
+  const {data} = userInfo;
   return (
     <View style={styles.MainContainer}>
       <Image
@@ -23,33 +26,43 @@ export const InformationStudent = (props: any) => {
 
       <View style={styles.viewAvatarImage}>
         <CircleImage
-          source={require('../../assets/images/avatar.jpg')}
+          source={{uri: data?.avatar}}
           style={styles.circleImage}
           size={wp('27')}
           resizeMode={'cover'}
         />
       </View>
-      <Text style={styles.fullName}>Hoàng Trần Vinh Quang</Text>
+      <Text style={styles.fullName}>{data?.name}</Text>
       <View style={styles.viewField}>
         <FieldUser
           style={styles.fieldUser}
           title={'Ngày sinh'}
-          content={'8/12/2000'}
+          content={moment(data?.birthday, 'yyyy-mm-dd').format('DD/MM/YYYY')}
         />
         <FieldUser
           style={styles.fieldUser}
           title={'Giới tính'}
-          content={'Nam'}
+          content={data?.gender}
         />
         <FieldUser
           style={styles.fieldUser}
           title={'Điện thoại'}
-          content={'0399644146'}
+          content={data?.phonenumber}
         />
         <FieldUser
           style={styles.fieldUser}
           title={'Địa chỉ'}
-          content={'Bình Dương'}
+          content={data?.address}
+        />
+        <FieldUser
+          style={styles.fieldUser}
+          title={'Lớp học'}
+          content={userInfo?.classes?.name}
+        />
+        <FieldUser
+          style={styles.fieldUser}
+          title={'Trường học'}
+          content={userInfo?.schoolname}
         />
       </View>
     </View>
@@ -101,3 +114,9 @@ const styles = StyleSheet.create({
     marginLeft: wp('2'),
   },
 });
+const mapStateFromProps = (state: any) => {
+  return {
+    userInfo: state.systems.userInfo,
+  };
+};
+export default connect(mapStateFromProps, null)(InformationStudent);
