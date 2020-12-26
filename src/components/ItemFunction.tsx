@@ -14,7 +14,9 @@ export const ItemFunction = (props: any) => {
     <Pressable style={styles.MainContainer}>
       <LinearGradient colors={color} style={styles.abc}>
         <Image source={source} style={styles.Icon} />
-        <Text style={[styles.title]}>{title}</Text>
+        <Text style={[styles.title]} numberOfLines={2}>
+          {title}
+        </Text>
       </LinearGradient>
     </Pressable>
   );
@@ -22,9 +24,8 @@ export const ItemFunction = (props: any) => {
 
 const styles = StyleSheet.create({
   MainContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    height: hp('25'),
+    width: wp('40'),
   },
   title: {
     fontSize: wp('4.5'),
@@ -32,17 +33,18 @@ const styles = StyleSheet.create({
     fontFamily: 'roboto-slab-bold',
     color: '#FFFFFF',
     marginTop: hp('2'),
+    textAlign: 'center',
   },
   abc: {
-    height: hp('25'),
-    width: wp('40'),
-    justifyContent: 'center',
     alignItems: 'center',
     borderRadius: wp('2'),
     ...shadow(6),
+    flex: 1,
+    paddingHorizontal: wp(2),
   },
   Icon: {
     height: hp('6'),
     width: wp('12'),
+    marginTop: '40%',
   },
 });

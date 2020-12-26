@@ -14,19 +14,24 @@ import RouteMain from './src/route';
 import {connect} from 'react-redux';
 import {actionInit} from './src/utils/actionsMain';
 import {system} from './src/redux';
+import ActivityIndicator from './src/components/ActivityIndicator';
 const App = (props: any) => {
+  const {loading} = props;
   useEffect(() => {
     actionInit(props);
   }, []);
   return (
     <View style={{flex: 1}}>
+      {loading && <ActivityIndicator />}
       <StatusBar barStyle="light-content" />
       <RouteMain />
     </View>
   );
 };
 const mapStateFromProps = (state: any) => {
-  return {};
+  return {
+    loading: state.systems.loading,
+  };
 };
 const styles = StyleSheet.create({});
 export default connect(mapStateFromProps, {...system})(App);

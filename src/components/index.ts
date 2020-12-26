@@ -1,1 +1,1 @@
-export * from './ItemFunction'
+export * from './ItemFunction';
