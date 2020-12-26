@@ -1,8 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
-import {Login, SplashScreen, HomeStudent} from '../screens';
-
+import {Login, SplashScreen, HomeStudent, HomeTeacher} from '../screens';
 import {from} from 'rxjs';
 const Stack = createStackNavigator();
 const mainRoute = () => {

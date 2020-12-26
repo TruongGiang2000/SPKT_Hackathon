@@ -4,11 +4,17 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {ItemFunction} from '../../components';
+import {ItemFunction, CircleImage} from '../../components';
 
 export const HomeStudent = (props: any) => {
   return (
     <View style={styles.MainContainer}>
+      <View>
+        <CircleImage
+          size={10}
+          source={require('../../assets/images/avatar.jpg')}
+        />
+      </View>
       <View style={styles.Row}>
         <ItemFunction
           source={require('../../assets/images/schedule1.png')}
