@@ -49,3 +49,4 @@ const styles = StyleSheet.create({
     marginTop: hp(4),
   },
 });
+

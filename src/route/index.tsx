@@ -1,13 +1,20 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
-import {Login, SplashScreen, HomeStudent, HomeTeacher} from '../screens';
+import {
+  Login,
+  SplashScreen,
+  HomeStudent,
+  HomeTeacher,
+  Information,
+} from '../screens';
 import {from} from 'rxjs';
 const Stack = createStackNavigator();
 const mainRoute = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator headerMode={'none'}>
+        <Stack.Screen name={'Information'} component={Information} />
         <Stack.Screen name={'HomeStudent'} component={HomeStudent} />
         <Stack.Screen name={'SplashScreen'} component={SplashScreen} />
         <Stack.Screen name={'Login'} component={Login} />

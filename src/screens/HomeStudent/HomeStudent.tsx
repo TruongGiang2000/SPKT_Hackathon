@@ -4,14 +4,16 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {ItemFunction, CircleImage} from '../../components';
+import {ItemFunction, CircleImage, Arrow} from '../../components';
 
 export const HomeStudent = (props: any) => {
   return (
     <View style={styles.MainContainer}>
+      <Arrow title={'Thời Khóa Biểu'} />
+
       <View>
         <CircleImage
-          size={10}
+          size={20}
           source={require('../../assets/images/avatar.jpg')}
         />
       </View>
