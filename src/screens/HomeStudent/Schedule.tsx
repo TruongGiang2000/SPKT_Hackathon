@@ -1,14 +1,91 @@
 import React from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet, Text, FlatList} from 'react-native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {} from '../../components';
+import {Arrow} from '../../components';
+import shadow from '../../utils/shadow';
 export const Schedule = (props: any) => {
+  const dataDummy = [
+    {
+      date: '',
+      id: '',
+      subjects: ['Toán', 'Lý', 'Hoá', 'Sinh', 'Toán', 'Sinh', 'Lý'],
+    },
+    {
+      date: '',
+      id: '',
+      subjects: ['Toán', 'Lý', 'Hoá', 'Sinh', 'Toán', 'Sinh', 'Lý'],
+    },
+    {
+      date: '',
+      id: '',
+      subjects: ['Toán', 'Lý', 'Hoá', 'Sinh', 'Toán', 'Sinh', 'Lý'],
+    },
+    {
+      date: '',
+      id: '',
+      subjects: ['Toán', 'Lý', 'Hoá', 'Sinh', 'Toán', 'Sinh', 'Lý'],
+    },
+    {
+      date: '',
+      id: '',
+      subjects: ['Toán', 'Lý', 'Hoá', 'Sinh', 'Toán', 'Sinh', 'Lý'],
+    },
+    {
+      date: '',
+      id: '',
+      subjects: ['Toán', 'Lý', 'Hoá', 'Sinh', 'Toán', 'Sinh', 'Lý'],
+    },
+  ];
+  const renderItem = ({item, index}) => {
+    const isFirst = index == 0;
+    return (
+      <SquareItem
+        day={index + 2}
+        style={isFirst ? {borderLeftWidth: 1} : undefined}
+      />
+    );
+  };
+  const renderChildItem = ({item, index}) => {
+    return (
+      <FlatList
+        data={item.subjects}
+        renderItem={renderItemSubject}
+        keyExtractor={(item, index) => `${index}`}
+        extraData={index}
+      />
+    );
+  };
+  const renderItemSubject = ({item, index}) => {
+    return (
+      <SquareChildItem
+        name={item.toString()}
+        // style={isFirst ? {borderLeftWidth: 1} : undefined}
+      />
+    );
+  };
+
   return (
     <View style={styles.MainContainer}>
-      <Text>Schedule</Text>
+      <Arrow title={'Thời khoá biểu'} />
+      <View style={styles.viewFlatList}>
+        <FlatList
+          keyExtractor={(item, index) => `${index}`}
+          data={dataDummy}
+          renderItem={renderItem}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+        />
+        <FlatList
+          data={dataDummy}
+          renderItem={renderChildItem}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          keyExtractor={(item, index) => `${index}`}
+        />
+      </View>
     </View>
   );
 };
@@ -16,5 +93,42 @@ export const Schedule = (props: any) => {
 const styles = StyleSheet.create({
   MainContainer: {
     flex: 1,
+    paddingHorizontal: wp(4),
+    paddingVertical: hp(2),
+  },
+  squareItem: {
+    fontSize: wp(3.8),
+    backgroundColor: '#22B1F0',
+    fontFamily: 'roboto-slab-bold',
+    color: '#fff',
+    width: wp(15),
+    textAlign: 'center',
+    paddingVertical: wp(2),
+    borderTopWidth: 1,
+    borderColor: '#000',
+    borderRightWidth: 1,
+  },
+  viewFlatList: {
+    alignItems: 'center',
+    marginTop: hp('2'),
+  },
+  squareChildItem: {
+    fontSize: wp(3.8),
+    fontFamily: 'roboto-slab-regular',
+    color: '#000',
+    width: wp(15),
+    paddingVertical: wp(2),
+    textAlign: 'center',
+    borderTopWidth: 1,
+    borderColor: '#000',
+    borderRightWidth: 1,
   },
 });
+const SquareItem = (props: any) => {
+  const {day, style} = props;
+  return <Text style={[styles.squareItem, style]}>{`Thứ ${day}`}</Text>;
+};
+const SquareChildItem = (props: any) => {
+  const {name, style} = props;
+  return <Text style={[styles.squareChildItem, style]}>{name}</Text>;
+};
