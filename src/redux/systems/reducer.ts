@@ -53,6 +53,11 @@ export const systemsReducer: any = (state = initState, actions: any) => {
         ...state,
         classes: payload.data,
       };
+    case types.LOGOUT:
+      return {
+        ...state,
+        token: '',
+      };
     default:
       return state;
   }

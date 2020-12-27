@@ -1,5 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {View, StyleSheet, Text, ImageBackground} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Text,
+  ImageBackground,
+  ToastAndroid,
+} from 'react-native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -27,6 +33,9 @@ const Login = (props: any) => {
     props.login(dataLogin);
     actionMain.loading(true);
   };
+  useEffect(() => {
+    ToastAndroid.show(messageLogin, ToastAndroid.SHORT);
+  }, [messageLogin]);
   useEffect(() => {
     !token && props.navigation.navigate('Login');
     token && isStudent && props.navigation.navigate('HomeStudent');

@@ -1,12 +1,20 @@
 import React from 'react';
-import {View, StyleSheet, Text, Image} from 'react-native';
+import {View, StyleSheet, Text, Image, ToastAndroid} from 'react-native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import {connect} from 'react-redux';
 import {ItemFunction, CircleImage} from '../../components';
+import OptionsMenu from 'react-native-option-menu';
+import lodash from 'lodash';
+import {system} from '../../redux';
+
 const HomeTeacher = (props: any) => {
+  const logOut = () => {
+    props.LogOut();
+  };
+  const cancel = () => {};
   const {userInfo} = props;
   const {data} = userInfo;
   return (
@@ -17,18 +25,31 @@ const HomeTeacher = (props: any) => {
           <Text style={styles.name}>{data?.name}</Text>
           <Text style={styles.competence}>(Giáo viên)</Text>
         </View>
+        <View style={styles.abc}>
+          <OptionsMenu
+            button={require('../../assets/images/menu.png')}
+            destructiveIndex={1}
+            buttonStyle={styles.threeDot}
+            options={['Đăng xuất', 'Hủy']}
+            actions={[logOut, cancel]}
+            style={{width: wp('6'), height: wp('10'), backgroundColor: 'red'}}
+          />
+        </View>
       </View>
-      <Image
-        source={require('../../assets/images/menu.png')}
-        style={styles.threeDot}
-      />
 
       <View style={styles.viewRow}>
         <ItemFunction
           color={['#667db6', '#0082c8', '#0082c8', '#667db6']}
           title={'Lớp chủ nhiệm'}
           source={require('../../assets/images/presentation.png')}
-          onPress={() => props.navigation.navigate('Classes')}
+          onPress={() =>
+            data?.classes == ''
+              ? ToastAndroid.show(
+                  'Bạn hiện tại không phải là giáo viên chú nhiệm!!',
+                  ToastAndroid.LONG,
+                )
+              : props.navigation.navigate('Classes')
+          }
         />
         <ItemFunction
           color={['#ffb347', '#ffcc33']}
@@ -94,11 +115,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   threeDot: {
+    width: wp('5'),
+    height: wp('5'),
+  },
+  abc: {
     position: 'absolute',
-    top: hp(3),
+    top: hp('3'),
     right: 5,
-    width: wp(5),
-    height: wp(5),
   },
 });
 const mapStateFromProps = (state: any) => {
@@ -106,4 +129,4 @@ const mapStateFromProps = (state: any) => {
     userInfo: state.systems.userInfo,
   };
 };
-export default connect(mapStateFromProps, null)(HomeTeacher);
+export default connect(mapStateFromProps, system)(HomeTeacher);

@@ -4,13 +4,17 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {ItemFunction, CircleImage} from '../../components';
+import {ItemFunction, CircleImage, ItemStudent} from '../../components';
 import * as Animate from 'react-native-animatable';
-import {MenuProvider} from 'react-native-popup-menu';
+import OptionsMenu from 'react-native-option-menu';
+import {system} from '../../redux';
 import {connect} from 'react-redux';
-const HomeStudentChild = (props: any) => {
-  const {userInfo} = props;
-  const {data} = userInfo;
+
+export const HomeStudentChild = (props: any) => {
+  const logOut = () => {
+    props.LogOut();
+  };
+  const cancel = () => {};
   return (
     <View style={styles.MainContainer}>
       <Animate.View animation={'fadeInUp'}>
@@ -20,11 +24,19 @@ const HomeStudentChild = (props: any) => {
             <Text style={styles.name}>{data?.name}</Text>
             <Text style={styles.competence}>(Học sinh)</Text>
           </View>
+          <View style={styles.abc}>
+            <OptionsMenu
+              button={require('../../assets/images/menu.png')}
+              destructiveIndex={1}
+              buttonStyle={styles.threeDot}
+              options={['Đăng xuất', 'Hủy']}
+              actions={[logOut, cancel]}
+              style={{width: wp('6'), height: wp('10'), backgroundColor: 'red'}}
+            />
+          </View>
         </View>
-        <Image
-          source={require('../../assets/images/menu.png')}
-          style={styles.threeDot}
-        />
+        <ItemStudent />
+
         <ScrollView style={{marginBottom: hp('4')}}>
           <View style={styles.Row}>
             <ItemFunction
@@ -100,16 +112,18 @@ const styles = StyleSheet.create({
     marginLeft: wp(2),
   },
   threeDot: {
+    width: wp('5'),
+    height: wp('5'),
+  },
+  abc: {
     position: 'absolute',
-    top: hp(3),
+    top: hp('3'),
     right: 5,
-    width: wp(5),
-    height: wp(5),
   },
 });
-const mapStateFromProps = (state) => {
+const mapStateFromProps = (state: any) => {
   return {
     userInfo: state.systems.userInfo,
   };
 };
-export default connect(mapStateFromProps, null)(HomeStudentChild);
+export default connect(mapStateFromProps, system)(HomeStudentChild);

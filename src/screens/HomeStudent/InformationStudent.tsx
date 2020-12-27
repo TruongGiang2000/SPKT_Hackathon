@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, Text, Image} from 'react-native';
+import {View, StyleSheet, Text, ImageComponent, Image} from 'react-native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -13,12 +13,17 @@ const InformationStudent = (props: any) => {
   return (
     <View style={styles.MainContainer}>
       <Image
-        source={require('../../assets/images/congtamquan.jpg')}
+        source={require('../../assets/images/congtamquan3.jpg')}
         style={styles.headerImage}
         resizeMode={'cover'}
-        blurRadius={7}
+        blurRadius={0.5}
       />
       <Text style={styles.personal}>Cá nhân</Text>
+      <Image
+        source={require('../../assets/images/left-arrow2.png')}
+        style={styles.icon}
+      />
+
       <View style={styles.viewAvatarImage}>
         <CircleImage
           source={{uri: data?.avatar}}
@@ -95,11 +100,18 @@ const styles = StyleSheet.create({
     marginTop: hp('2'),
   },
   fullName: {
-    color: '#5C6979',
+    color: '#000000',
     fontFamily: 'roboto-slab-bold',
-    fontSize: wp('4'),
+    fontSize: wp('4.5'),
     textAlign: 'center',
     marginTop: hp('3.5'),
+  },
+  icon: {
+    height: wp('8'),
+    width: wp('8'),
+    marginTop: wp('5'),
+    position: 'absolute',
+    marginLeft: wp('2'),
   },
 });
 const mapStateFromProps = (state: any) => {

@@ -5,7 +5,7 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import moment from 'moment';
-import {FieldUser, CircleImage} from '../../components';
+import {FieldUser, CircleImage, ItemStudent} from '../../components';
 import {connect} from 'react-redux';
 import {system} from '../../redux';
 import {Arrow} from '../../components';
@@ -20,10 +20,12 @@ const Classes = (props: any) => {
   console.log('classes', classes);
   const renderItem = ({item}) => {
     return (
-      <Ripple onPress={() => setShowModal(true)}>
-        <Text style={styles.txtItem}>{item.name}</Text>
-        <View style={styles.line} />
-      </Ripple>
+      <ItemStudent
+        source={{uri: item?.avatar}}
+        name={item?.name}
+        phone={item?.phonenumber}
+        address={item?.address}
+      />
     );
   };
   return (
@@ -44,7 +46,7 @@ const Classes = (props: any) => {
 const styles = StyleSheet.create({
   MainContainer: {
     flex: 1,
-    paddingHorizontal: wp(2),
+    paddingHorizontal: wp(4),
     paddingVertical: hp(2),
     backgroundColor: '#fff',
   },

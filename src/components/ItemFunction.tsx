@@ -38,9 +38,9 @@ const styles = StyleSheet.create({
   abc: {
     alignItems: 'center',
     borderRadius: wp('2'),
-    ...shadow(6),
     flex: 1,
     paddingHorizontal: wp(2),
+    ...shadow(10),
   },
   Icon: {
     height: hp('6'),

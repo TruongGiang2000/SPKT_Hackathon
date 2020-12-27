@@ -16,7 +16,7 @@ export const FieldUser = (props: any) => {
 };
 const styles = StyleSheet.create({
   title: {
-    color: '#5C6979',
+    color: '#000000',
     fontFamily: 'roboto-slab-bold',
     fontSize: wp('3.8'),
   },
