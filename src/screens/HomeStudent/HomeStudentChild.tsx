@@ -15,6 +15,8 @@ export const HomeStudentChild = (props: any) => {
     props.LogOut();
   };
   const cancel = () => {};
+  const {userInfo} = props;
+  const {data} = userInfo;
   return (
     <View style={styles.MainContainer}>
       <Animate.View animation={'fadeInUp'}>
@@ -35,8 +37,6 @@ export const HomeStudentChild = (props: any) => {
             />
           </View>
         </View>
-        <ItemStudent />
-
         <ScrollView style={{marginBottom: hp('4')}}>
           <View style={styles.Row}>
             <ItemFunction

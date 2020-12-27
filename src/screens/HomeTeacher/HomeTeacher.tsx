@@ -12,6 +12,7 @@ import {system} from '../../redux';
 
 const HomeTeacher = (props: any) => {
   const logOut = () => {
+    console.log('aloalao');
     props.LogOut();
   };
   const cancel = () => {};

@@ -17,7 +17,6 @@ export const CircleImage = (props: any) => {
             borderRadius: size / 2 || wp('20') / 2,
             borderColor: '#000',
             borderWidth: 1,
-            ...shadow(6),
           },
           styleImage,
         ]}
